@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# change facebook.com, localhost, IP resolves
+# Make a copy of the host first
+cp /etc/hosts ~/hosts.new
+# Remove the facebook.com and  localhost, domain names from file if they exists
+sed -i '/localhost\|facebook.com/ d' ~/hosts.new
+# Append new Ip, Domain_name
+echo "127.0.0.2 localhost">> ~/hosts.new
+echo "8.8.8.8 facebook.com">> ~/hosts.new
+# forcefully make commit update to the original file
+cp -f ~/hosts.new /etc/hosts
