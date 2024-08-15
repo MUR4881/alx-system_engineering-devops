@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Display all active IPv4 IPs on the machine
+# Get ip4s |extr loc socket | extract ip, rm port number, except lines w/o delm
+netstat -4n|cut -d" " -f16|cut -d":" -f1 -s | uniq
