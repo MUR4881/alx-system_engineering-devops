@@ -1,14 +1,36 @@
 #!/usr/bin/python3
-import requests
+
+""" Query the Reddit API for subreddit subscribers"""
 
 
 def number_of_subscribers(subreddit):
-    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
-    headers = headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0;\
-                         rv:68.0) Gecko/20100101 FirefoxFirefox/68.0'}
-    with requests.session() as client:
-        info = client.get(url, headers=headers, allow_redirects=False).json()
-        try:
-            return info.get('data', {}).get('subscribers', 0)
-        except Exception:
-            return 0
+    """ Query a Reddit subreddit for the total number of subscribers.
+    Avoid redirects to search results if invalid subreddit.
+    @Param: subreddit
+    Returns: 0 if not valid subreddit
+    """
+    import requests as RQ
+
+    SUB_URL = 'http://reddit.com/r/{}/about.json'.format(str(subreddit))
+
+    agent = {'user-agent': 'my-api/0.0.1'}
+
+    resp = RQ.get(SUB_URL, headers=agent, allow_redirects=False)
+
+    if (resp.status_code != 200):
+        return 0
+
+    try:
+        json_resp = resp.json()
+
+    except ValueError:
+        return 0
+
+    data = json_resp.get('data')
+
+    if data:
+        subs = data.get('subscribers')
+        if subs:
+            return subs
+
+    return 0
