@@ -1,0 +1,11 @@
+<h1> A one server web infrastructure that hosts a website that is reachable via:</h1>
+
+www.foobar.com:
+
+As User lays his/her fingers on the keyboard to type a search query, the browser's search bar becomes the active input field.
+
+The User types in the URL (Uniform Resource Locator) in this case (www.foobar.com) ( which is the Domain name).
+
+The Browser checks its cache (Browser cache) to see if the webservers ip is cached and has not expired.
+
+If the IP address of the domain has not been cached/stored before, The 
