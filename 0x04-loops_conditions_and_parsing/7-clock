@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Display the time for 12 hours and 59 minutes:
+
+# Declaring variables
+Hour=0
+min=0
+
+while [ $Hour -le 12 ]
+do
+	if [ $min -eq 0 ]
+	then
+		echo "Hour: $Hour"
+	elif [ $min -eq 59 ]
+	then
+		echo "$min"
+		((Hour++))
+		((min=-1))  # to remain zero, after min++ below
+	else
+		echo "$min"
+	fi
+	((min++))
+done
