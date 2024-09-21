@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# list the content of the current directory, Where only the part of the name after the first dash (-) is displayed
+
+# find . | cut --delimiter="-" --fields=1 --complement
+# Above will do, but the task requirement!
+
+files=$(ls)  # getting file lists
+for filename in $files
+do
+	echo "$filename" | cut --delimiter="-" --fields=1 --complement
+done
