@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Tell the story of passwd
+
+IFS=":"  # using : a separator, -> as it is inside /etc/passwd
+exec 5</etc/passwd  #opening the file, and getting the file descriptor
+
+while read -r -u 5 -a user
+do
+	echo "The user ${user[0]} is part of the ${user[3]} gang, lives in ${user[5]} and rides ${user[6]}. ${user[2]}'s place is protected by the passcode ${user[1]}, more info about the user here: ${user[4]}"
+done
